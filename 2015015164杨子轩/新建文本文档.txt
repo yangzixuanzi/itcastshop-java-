@@ -1,0 +1,53 @@
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(20) NOT NULL,
+  `user_password` varchar(20) NOT NULL,
+  `user_email` varchar(20) NOT NULL,
+  `user_posttime` varchar(20) NOT NULL,
+  `IDnumber` varchar(30) NOT NULL,
+  `RealName` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `order_detail` (
+  `orderdetail_id` int(11) NOT NULL AUTO_INCREMENT,
+  `count` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `book_id` int(11) NOT NULL,
+  PRIMARY KEY (`orderdetail_id`),
+  KEY `order_id` (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_time` varchar(20) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `order_state` varchar(20) NOT NULL,
+  PRIMARY KEY (`order_id`),
+  KEY `user-id` (`user_id`),
+  CONSTRAINT `orders_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `book_type` (
+  `type_id` int(11) NOT NULL AUTO_INCREMENT,
+  `type_name` varchar(20) NOT NULL,
+  PRIMARY KEY (`type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `book` (
+  `book_id` int(11) NOT NULL AUTO_INCREMENT,
+  `book_name` varchar(20) NOT NULL,
+  `book_publisher` varchar(20) NOT NULL,
+  `book_price` varchar(20) NOT NULL,
+  `book_img` varchar(20) NOT NULL,
+  `type_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`book_id`),
+  KEY `type_id` (`type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `admin` (
+  `admin_id` int(11) NOT NULL AUTO_INCREMENT,
+  `admin_name` varchar(20) NOT NULL,
+  `admin_password` varchar(20) NOT NULL,
+  PRIMARY KEY (`admin_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
